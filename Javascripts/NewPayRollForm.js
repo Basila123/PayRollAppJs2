@@ -2,19 +2,19 @@
 window.addEventListener('DOMContentLoaded', (event) => {
   //for name
     const name = document.querySelector('#name');
-    const textError = document.querySelector('.texr-error');
-    name.addEventListener('input', function () {
-      if (name.value.length == 0) {
-        textError.textContent = "";
-      return;
-      }
-      try {
-        (new EmployeePayrollData()).name = name.value;
-        textError.textContent = "";
-      } catch (e) {
-          textError.textContent = e;
-      }
-     });
+    const textError = document.querySelector('.text-error');
+    name.addEventListener('input',function() {
+        if(name.value.length == 0){
+            textError.textContent = "";
+            return;
+        }
+        try {
+            (new EmployeePayrollData()).name = name.value;
+            textError.textContent = "";
+        }catch (e) {
+            textError.textContent = e;
+        }
+    });
 
     const salary = document.querySelector('#salary');
     const output = document.querySelector('.salary-output');
@@ -117,4 +117,37 @@ function createAndUpdateStorage(employeePayrollData){
   alert(employeePayrollList.toString());
   localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
 
+}
+
+
+const resetForm =() => {
+  setValue('#name','');
+  setTextValue('.text-error',' ');
+  unsetSelectedValues('[name=profile');
+  unsetSelectedValues('[name=department');
+  unsetSelectedValues('[name=gender');
+  setValue('#salary', ' ');
+  setTextValue('.salary-output',400000);
+  setValue('#notes','');
+  setValue('#day',1);
+  setValue('#month','January');
+  setValue('#year','2020');
+  setTextValue('.date-error');
+}
+
+const unsetSelectedValues=(propertyValue)=>{
+  let allItems=document.querySelectorAll(propertyValue);
+  allItems.forEach(item=> {
+    item.checked=false;
+  })
+}
+
+const setTextValue=(id,value)=>{
+  const element=document.querySelector(id);
+  element.textContent=value;
+}
+
+const setValue=(id,value)=>{
+  const element=document.querySelector(id);
+  element.value=value;
 }
