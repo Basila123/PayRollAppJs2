@@ -153,14 +153,13 @@ select {
 .submitButton {
     border: 1px solid #707070;
     border-radius: 8px;
-    background-color: #927a2b;
+    background-color: #e9e9e9;
     margin-right: 30px;
 }
 
 .cancelButton {
     text-decoration: none;
     text-align: center;
-    background-color: #82a70c;
 }
 
 error-output {

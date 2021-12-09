@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,7 +13,7 @@
 <body>
     <header class="header-content header">
         <div class="logo-content">
-            <img src="../assets/images/logo.png" alt="broken">
+            <img src="../Assets/images/logo.png" alt="broken">
             <div>
                 <span class="emp-text">EMPLOYEE</span><br>
                 <span class="emp-text emp-payroll">PAYROLL</span>
@@ -34,23 +35,23 @@
                 <div class="profile-radio-content">
                     <label>
                         <input type="radio" id="profile3" name="profile"
-                                value="../assets/profile-images/Ellipse -3.png" required>
+                                value="../Assets/profile-images/Ellipse -3.png" required>
                         <img class="profile" id="image3" src="../Assets/profile-images/Ellipse -3.png">
                     </label>
                     <label>
                         <input type="radio" id="profile1" name="profile"
-                                value="../assets/profile-images/Ellipse -1.png" required>
-                        <img class="profile" id="image1" src="../Assets/profile-images/Ellipse -4.png">
+                                value="../Assets/profile-images/Ellipse -1.png" required>
+                        <img class="profile" id="image1" src="../Assets/profile-images/Ellipse -1.png">
                     </label>
                     <label>
                         <input type="radio" id="profile8" name="profile"
-                                value="../assets/profile-images/Ellipse -8.png" required>
-                        <img class="profile" id="image8" src="../Assets/profile-images/Ellipse -5.png">
+                                value="../Assets/profile-images/Ellipse -8.png" required>
+                        <img class="profile" id="image8" src="../Assets/profile-images/Ellipse -8.png">
                     </label>
                     <label>
                         <input type="radio" id="profile7" name="profile"
-                                value="../assets/profile-images/Ellipse -7.png" required>
-                        <img class="profile" id="image7" src="../Assets/profile-images/Ellipse -8.png ">
+                                value="../Assets/profile-images/Ellipse -7.png" required>
+                        <img class="profile" id="image7" src="../Assets/profile-images/Ellipse -7.png">
                     </label>
                 </div>
             </div>
@@ -66,27 +67,27 @@
             <div class="row-content">
                 <label class="label text" for="department">Department</label>
                 <div>
-                    <input type="checkbox" id="hr" name="hr" value="HR">
+                    <input type="checkbox" id="hr" name="department" value="HR">
                     <label class="text" for="hr">HR</label>
-                    <input type="checkbox" id="sales" name="sales" value="Sales">
+                    <input type="checkbox" id="sales" name="department" value="Sales">
                     <label class="text" for="sales">Sales</label>
-                    <input type="checkbox" id="finance" name="finance" value="Finance">
+                    <input type="checkbox" id="finance" name="department" value="Finance">
                     <label class="text" for="finance">Finance</label>
-                    <input type="checkbox" id="engineer" name="engineer" value="Engineer">
+                    <input type="checkbox" id="engineer" name="department" value="Engineer">
                     <label class="text" for="engineer">Engineer</label>
-                    <input type="checkbox" id="others" name="others" value="Others">
+                    <input type="checkbox" id="others" name="department" value="Others">
                     <label class="text" for="others">Others</label>
                 </div>
             </div>
             <div class="row-content">
                 <label class="label text" for="salary">Salary</label>
                 <input class="input" type="range" name="salary" id="salary" min="300000" max="500000" step="100" value="400000">
-                <output class="salary-output text" for="salary">400000</output>
+                <output class="salary-output" for="salary">400000</output>
             </div>
             <div class="row-content">
                 <label class="label text" for="startDate">Start Date</label>
                 <div>
-                    <select id="day" name="Day">
+                    <select id="day" name="day">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -119,7 +120,7 @@
                         <option value="30">30</option>
                         <option value="31">31</option>
                     </select>
-                    <select id="month" name="Month">
+                    <select id="month" name="month">
                         <option value="Jan">January</option>
                         <option value="Feb">February</option>
                         <option value="Mar">March</option>
@@ -133,7 +134,7 @@
                         <option value="Nov">November</option>
                         <option value="Dec">December</option>
                     </select>
-                    <select id="year" name="Year">
+                    <select id="year" name="year">
                         <option value="2021">2021</option>
                         <option value="2020">2020</option>
                         <option value="2019">2019</option>
@@ -141,6 +142,7 @@
                         <option value="2017">2017</option>
                     </select>
                 </div>
+                <error-output class="date-error" for="day month year"></error-output>
             </div>
             <div class="row-content">
                 <label class="label text" for="notes">Notes</label>
@@ -156,4 +158,4 @@
         </form>
     </div>
 </body>
-</html
+</html>
