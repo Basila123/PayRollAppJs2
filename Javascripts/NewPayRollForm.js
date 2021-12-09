@@ -1,95 +1,120 @@
+//setting event listener
 window.addEventListener('DOMContentLoaded', (event) => {
-  const name = document.querySelector('#name');
-  const textError = document.querySelector('.text-error');
-  name.addEventListener('input',function() {
-      if(name.value.length == 0){
-          textError.textContent = "";
-          return;
+  //for name
+    const name = document.querySelector('#name');
+    const textError = document.querySelector('.texr-error');
+    name.addEventListener('input', function () {
+      if (name.value.length == 0) {
+        textError.textContent = "";
+      return;
       }
       try {
-          (new EmployeePayrollData()).name = name.value;
-          textError.textContent = "";
-      }catch (e) {
+        (new EmployeePayrollData()).name = name.value;
+        textError.textContent = "";
+      } catch (e) {
           textError.textContent = e;
       }
-  });
+     });
 
-  const salary = document.querySelector('#salary');
-  const output = document.querySelector('.salary-output');
-  salary.addEventListener('input',function(){
-      output.textContent=salary.value;
-  });
+    const salary = document.querySelector('#salary');
+    const output = document.querySelector('.salary-output');
+    salary.addEventListener('input', function () {
+    output.textContent = salary.value;
+    });
 
-  const month = document.querySelector('#month');
-  const year = document.querySelector('#year');
-  const day = document.querySelector('#day');
-  const dateError = document.querySelector('.date-error');
-  month.addEventListener('input',function(){
+
+
+    const month = document.querySelector('#month');
+    const year = document.querySelector('#year');
+    const day = document.querySelector('#day');
+    const dateError = document.querySelector('.date-error');
+    month.addEventListener('input', function () {
       try {
-          new EmployeePayrollData().startDate = new Date(document.querySelector('#day').value + ' ' + document.querySelector('#month').value + ' ' +
-                                          document.querySelector('#year').value);
-          dateError.textContent = '';
-      }catch (e) {
-          dateError.textContent = e;
-      }
-  });
-      day.addEventListener('input',function(){
+        new EmployeePayrollData().startDate = new Date(document.querySelector('#day').value + ' ' + document.querySelector('#month').value + ' ' +
+        document.querySelector('#year').value);
+        dateError.textContent = '';
+        } catch (e) {
+        dateError.textContent = e;
+        }
+      });
+
+      day.addEventListener('input', function () {
       try {
-          new EmployeePayrollData().startDate = new Date(document.querySelector('#day').value + ' ' + document.querySelector('#month').value + ' ' +
-                                          document.querySelector('#year').value);
-          dateError.textContent = '';
-      }catch (e) {
+        new EmployeePayrollData().startDate = new Date(document.querySelector('#day').value + ' ' + document.querySelector('#month').value + ' ' +
+        document.querySelector('#year').value);
+        dateError.textContent = '';
+        } catch (e) {
+        dateError.textContent = e;
+       }
+       });
+
+
+      year.addEventListener('input', function () {
+      try {
+        new EmployeePayrollData().startDate = new Date(document.querySelector('#day').value + ' ' + document.querySelector('#month').value + ' ' +
+        document.querySelector('#year').value);
+        dateError.textContent = '';
+      } catch (e) {
       dateError.textContent = e;
       }
-  });
-  year.addEventListener('input',function(){
-      try {
-          new EmployeePayrollData().startDate = new Date(document.querySelector('#day').value + ' ' + document.querySelector('#month').value + ' ' +
-                                          document.querySelector('#year').value);
-          dateError.textContent = '';
-      }catch (e) {
-      dateError.textContent = e;
-      }
-  });
-})
+      });
+
+});
+
 
 const save = () => {
   try {
-      let employeePayrollData = createEmployeePayroll();
-  }catch (e) {
-      return;
+    let employeePayrollData = createEmployeePayroll();
+     createAndUpdateStorage(employeePayrollData);
+  } catch (e) {
+    return;
   }
 }
 
 const createEmployeePayroll = () => {
-  let employeePayrollData = new EmployeePayrollData();
-  try {
-      employeePayrollData.name = getInputValueById('#name');
-  } catch (e) {
-      setTextValue('.text-error',e);
+    let employeePayrollData = new EmployeePayrollData();
+    try {
+       employeePayrollData.name = document.querySelector('#name').value;
+      // createAndUpdateStorage(employeePayrollData);
+      } catch (e) {
+      setTextValue('.name-error', e);
       throw e;
-  }
+   }
   employeePayrollData.profilePic = getSelectedValues('[name=profile]').pop();
   employeePayrollData.gender = getSelectedValues('[name=gender]').pop();
   employeePayrollData.department = getSelectedValues('[name=department]');
-  employeePayrollData.salary = getInputValueById('#salary');
-  employeePayrollData.note = getInputValueById('#notes');
-  let date = getInputValueById('#day')+" "+getInputValueById('#month')+" "+getInputValueById('#year');
+  employeePayrollData.salary = document.querySelector('#salary').value;
+  employeePayrollData.note = document.querySelector('#notes').value;
+  let date = document.querySelector('#day').value + ' ' + document.querySelector('#month').value + ' ' +
+  document.querySelector('#year').value;
   employeePayrollData.startDate = new Date(date);
   alert(employeePayrollData.toString());
   return employeePayrollData;
 }
 
+
+
 const getSelectedValues = (propertyValue) => {
   let allItems = document.querySelectorAll(propertyValue);
-  let selectedItems = [];
-  allItems.forEach (item => {
-      if(item.checked) selectedItems.push(item.value);
-  })
-  return selectedItems;
+  let selItems = [];
+  allItems.forEach(item => {
+    if (item.checked) selItems.push(item.value);
+  });
+  return selItems;
 }
 
-const getInputValueById = (id) => {
-  let value = document.querySelector(id).value;
-  return value;
-}    
+
+
+
+function createAndUpdateStorage(employeePayrollData){
+
+  let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+  if(employeePayrollList != undefined){
+      employeePayrollList.push(employeePayrollData);
+  }else {
+    employeePayrollList = [employeePayrollData]
+  }
+  alert(employeePayrollList.toString());
+  localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
+
+}
